@@ -1,1 +1,1 @@
-This project includes some files used in exercises/labs in the discipline "Advanced Topics in Distributed Software Architectures" of the Graduate Program in Computer Science at UFSCar (Federal University of São Carlos).
+This project includes some files used in exercises/labs in the subject "Advanced Topics in Distributed Software Architectures" of the Graduate Program in Computer Science at UFSCar (Federal University of São Carlos).
