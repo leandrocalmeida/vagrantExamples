@@ -1,0 +1,25 @@
+---
+- hosts: all 
+  become: yes
+  
+  tasks:
+    - name: Instala pacotes extras para o APT utilizar repositorios HTTPS
+      apt: name={{ item }} state=latest update_cache=yes
+      loop: ['apt-transport-https','ca-certificates','curl','gnupg-agent','software-properties-common'] 
+
+    - name: Baixa e adiciona a chave publica do docker no sistema
+      apt_key: 
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+        
+    - name: Adiciona o repositorio que contem os pacotes para a instalacao do docker  
+      apt_repository: 
+        repo: deb https://download.docker.com/linux/ubuntu focal stable
+        state: present
+         
+    - name: Atualiza a lista de repositorios e instala os pacotes docker
+      apt: name={{ item }} update_cache=yes
+      loop: ['docker-ce','docker-ce-cli','containerd.io']
+         
+    - name: Executa um teste de instalacao
+      command: docker run hello-world
